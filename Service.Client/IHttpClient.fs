@@ -1,4 +1,4 @@
-﻿namespace Hangman.Shared
+﻿namespace Hangman.Service.Client
 open System
 
 type IHttpClient =
@@ -6,5 +6,5 @@ type IHttpClient =
 
 module HttpClientExtensions =
     type IHttpClient with
-    member this.Get uri:string =
+    member this.Get uri =
         this.Get (Uri uri)
