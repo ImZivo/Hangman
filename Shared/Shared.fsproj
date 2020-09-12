@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <AssemblyName>Hangman.Shared</AssemblyName>
+        <RootNamespace>Hangman.Shared</RootNamespace>
+        <nullable>enable</nullable>
+    </PropertyGroup>
+
+</Project>
