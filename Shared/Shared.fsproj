@@ -7,4 +7,9 @@
         <nullable>enable</nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Compile Include="Paths.fs" />
+      <Compile Include="Alphabet.fs" />
+    </ItemGroup>
+
 </Project>
