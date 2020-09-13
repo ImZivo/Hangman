@@ -8,6 +8,7 @@ namespace Hangman.Website
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
+            Shared.Alphabet.LowercaseLetters
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

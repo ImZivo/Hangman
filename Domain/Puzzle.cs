@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Hangman.Domain
 {
     public sealed class Puzzle
     {
-        public Puzzle(int puzzleId, string text, int badGuesses, PuzzleStatus status)
+        public Puzzle(int puzzleId, string text, IReadOnlyCollection<char> guesses, PuzzleStatus status)
         {
             if (String.IsNullOrWhiteSpace(text))
             {
@@ -13,15 +14,21 @@ namespace Hangman.Domain
 
             PuzzleId = puzzleId;
             Text = text;
-            BadGuesses = badGuesses;
+            Guesses = guesses ?? throw new ArgumentNullException(nameof(guesses));
             Status = status;
+        }
+
+        public Puzzle(int puzzleId, string text)
+            : this(puzzleId, text, new char[0], PuzzleStatus.None)
+        {
+
         }
 
         public int PuzzleId { get; }
 
         public string Text { get; }
 
-        public int BadGuesses { get; }
+        public IReadOnlyCollection<char> Guesses { get; }
 
         public PuzzleStatus Status { get; }
     }

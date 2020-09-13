@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Hangman.Domain
 {
@@ -15,12 +16,15 @@ namespace Hangman.Domain
             {
                 PuzzleId = @this.PuzzleId,
                 Text = @this.Text,
-                BadGuesses = @this.BadGuesses,
+                Guesses = @this.Guesses.ToArray(),
                 Status = @this.Status.ToContract()
             };
         }
 
+        public static int ToInt(this PuzzleStatus @this) =>
+            (int)@this;
+
         public static Contracts.PuzzleStatus ToContract(this PuzzleStatus @this) =>
-            (Contracts.PuzzleStatus)(int)@this; // TODO: not sure if this works like i think
+            (Contracts.PuzzleStatus)@this.ToInt();
     }
 }

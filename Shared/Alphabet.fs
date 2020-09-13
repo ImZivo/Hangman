@@ -1,4 +1,10 @@
 ﻿namespace Hangman.Shared
+open System
 
 module public Alphabet =
-    let Letters = ['a'..'z'] |> List.toArray
+    let LowercaseLetters =
+        ['a'..'z']
+        |> List.toSeq
+    let UppercaseLetters =
+        LowercaseLetters
+        |> Seq.map Char.ToUpper
