@@ -1,8 +1,18 @@
-﻿@{
+﻿@using Hangman.Shared;
+
+@{
+    var alphabet = Alphabet.UppercaseLetters;
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>This is a website where you can play the classic <i>Hangman</i> game!</p>
+
+    <div class="col-sm-6 offset-3">
+        @foreach (var letter in alphabet)
+        {
+            <button class="btn btn-light btn-letter" style="width: 40px; height: 40px; margin: 5px">@letter</button>
+        }
+    </div>
 </div>
