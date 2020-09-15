@@ -3,6 +3,9 @@
 // on form element, provide the following data
 // class: ajax-form
 
+// on submit element, provide the following data
+// class: ajax-form-submit
+
 $(document).ready(function () {
     $("input.ajax-form-submit").click(function () {
         var form = $(this).closest("form");

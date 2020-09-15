@@ -8,20 +8,22 @@
 
 <div class="text-center">
     <h1 class="display-4">Hangman</h1>
+</div>
 
-    <div class="col-sm-6">
-        
-    </div>
+<div class="col-sm-6">
+    <span>@Model.Puzzle.PuzzleId</span>
+    <span>@String.Join(' ', Model.Puzzle.Text.Select(c => $"{c}"))</span>
+    <span>@Model.Puzzle.Status</span>
+</div>
 
-    <div class="col-sm-6">
-        @foreach (var letter in alphabet)
-        {
-            <form asp-action="Guess" asp-controller="Game">
-                <input type="hidden" value="@Model.Puzzle.PuzzleId" />
-                <button type="submit" class="btn btn-light btn-letter" style="width: 40px; height: 40px; margin: 5px">@letter</button>
-            </form>
-        }
-    </div>
+<div class="col-sm-6 text-center">
+    @foreach (var letter in alphabet)
+    {
+        <form class="ajax-form d-inline-block" asp-action="Guess" asp-controller="Game">
+            <input type="hidden" value="@Model.Puzzle.PuzzleId" />
+            <button type="submit" class="btn btn-light btn-letter ajax-form-submit" style="width: 40px; height: 40px; margin: 5px">@letter</button>
+        </form>
+    }
 </div>
 
 @section Scripts {
