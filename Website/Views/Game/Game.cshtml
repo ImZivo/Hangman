@@ -1,0 +1,39 @@
+﻿@model GameModel
+@using Hangman.Shared;
+
+@{
+    var alphabet = Alphabet.UppercaseLetters;
+    ViewData["Title"] = "Hangman - Game";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Hangman</h1>
+
+    <div class="col-sm-6">
+        
+    </div>
+
+    <div class="col-sm-6">
+        @foreach (var letter in alphabet)
+        {
+            <form asp-action="Guess" asp-controller="Game">
+                <input type="hidden" value="@Model.Puzzle.PuzzleId" />
+                <button type="submit" class="btn btn-light btn-letter" style="width: 40px; height: 40px; margin: 5px">@letter</button>
+            </form>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $(".btn-letter").click(function () {
+                $(this).attr("disabled", "disabled");
+                if ($(this).text() == "A" || $(this).text() == "B" || $(this).text() == "C") {
+                    $(this).addClass("btn-success");
+                    $(this).removeClass("btn-light");
+                }
+            });
+        });
+    </script>
+}

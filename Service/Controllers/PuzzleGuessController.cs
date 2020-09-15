@@ -8,11 +8,10 @@ namespace Hangman.Service.Controllers
     [ApiController]
     public sealed class PuzzleGuessController : ControllerBase
     {
-        [HttpGet("{id}/guess/{guess}")]
+        [HttpGet("{id}/guess")]
         public Contracts.Puzzle Get(
             [FromRoute] int id,
-            [FromRoute] char guess,
-            [FromBody] Contracts.Puzzle puzzle)
+            [FromBody] Contracts.PuzzleGuesses puzzle)
         {
             // TODO: calculate
 

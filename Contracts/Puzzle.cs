@@ -11,10 +11,7 @@ namespace Hangman.Contracts
         [DataMember(Name = "Text", Order = 1)]
         public string Text { get; set; } = null!;
 
-        [DataMember(Name = "Guesses", Order = 2)]
-        public char[] Guesses { get; set; } = null!;
-
-        [DataMember(Name = "Status", Order = 3)]
+        [DataMember(Name = "Status", Order = 2)]
         public PuzzleStatus Status { get; set; }
 
         ExtensionDataObject IExtensibleDataObject.ExtensionData { get; set; } = null!;

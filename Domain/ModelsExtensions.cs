@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 using System.Linq;
 
 namespace Hangman.Domain
@@ -16,8 +17,21 @@ namespace Hangman.Domain
             {
                 PuzzleId = @this.PuzzleId,
                 Text = @this.Text,
-                Guesses = @this.Guesses.ToArray(),
                 Status = @this.Status.ToContract()
+            };
+        }
+
+        public static Contracts.PuzzleGuesses ToContract(this PuzzleGuesses @this)
+        {
+            if (@this is null)
+            {
+                throw new ArgumentNullException(nameof(@this));
+            }
+
+            return new Contracts.PuzzleGuesses()
+            {
+                PuzzleId = @this.PuzzleId,
+                Guesses = @this.Guesses.ToArray()
             };
         }
 
