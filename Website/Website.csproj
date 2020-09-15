@@ -12,6 +12,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Domain\Domain.csproj" />
       <ProjectReference Include="..\Service.Client\Service.Client.fsproj" />
       <ProjectReference Include="..\Shared\Shared.fsproj" />
     </ItemGroup>
