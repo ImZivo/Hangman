@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Hangman.Domain
 {
@@ -31,5 +32,21 @@ namespace Hangman.Domain
         public IReadOnlyCollection<char> Guesses { get; }
 
         public PuzzleStatus Status { get; }
+    }
+
+    public static class PuzzleExtensions
+    {
+        public static int BadGuesses(this Puzzle @this)
+        {
+            if (@this is null)
+            {
+                throw new ArgumentNullException(nameof(@this));
+            }
+
+            return @this.Guesses
+                .Select(g => @this.Text.Contains(g))
+                .Where(goodGuess => !goodGuess)
+                .Count();
+        }
     }
 }
