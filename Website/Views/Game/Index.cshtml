@@ -63,9 +63,12 @@
                         cache: false,
                         success: function (puzzle) {
                             const puzzleText = puzzle.text;
-
                             $("#puzzleText").text(puzzleText);
                             handleButtonClasses();
+
+                            if (puzzle.status == 1) {
+                                handleWin();
+                            }
                         },
                         error: function () {
                             alert("ERROR");
@@ -86,6 +89,21 @@
                                 $(this).addClass("btn-light");
                             }
                         });
+                    }
+
+                    function handleWin() {
+                        disableButtons();
+                        displayWinNotification();
+
+                        function disableButtons() {
+                            $(".btn-letter").each(function () {
+                                $(this).attr("disabled", "disabled");
+                            });
+                        }
+
+                        function displayWinNotification() {
+                            alert("YOU WIN!");
+                        }
                     }
                 }
             });
