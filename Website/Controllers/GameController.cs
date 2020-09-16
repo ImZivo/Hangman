@@ -1,4 +1,5 @@
-﻿using Hangman.Domain;
+﻿using System;
+using Hangman.Domain;
 using Hangman.Website.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,6 +12,16 @@ namespace Hangman.Website.Controllers
             var puzzle = new Puzzle(1, "_____");
             var model = new GameModel(puzzle);
             return View(model);
+        }
+
+        public Contracts.Puzzle Guess(Contracts.PuzzleGuesses puzzle)
+        {
+            return new Contracts.Puzzle()
+            {
+                PuzzleId = puzzle.PuzzleId,
+                Text = "_PP__",
+                Status = Contracts.PuzzleStatus.None
+            };
         }
     }
 }

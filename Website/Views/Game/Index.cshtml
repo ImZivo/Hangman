@@ -10,30 +10,83 @@
     <h1 class="display-4">Hangman</h1>
 </div>
 
-<div class="col-sm-6">
-    <span>@Model.Puzzle.PuzzleId</span>
-    <span>@String.Join(' ', Model.Puzzle.Text.Select(c => $"{c}"))</span>
-    <span>@Model.Puzzle.Status</span>
+<div class="row">
+    <div class="col-sm-12 text-center">
+        <span id="puzzleText">@String.Join(' ', Model.Puzzle.Text)</span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6 offset-3 text-center">
+        @foreach (var letter in alphabet)
+        {
+            <button type="submit" class="btn btn-light btn-letter ajax-form-submit" style="width: 40px; height: 40px; margin: 5px">@letter</button>
+            @*<form class="ajax-form" asp-controller="Game" asp-action="Guess" method="get">
+                    <input name="puzzleId" type="hidden" value="@Model.Puzzle.PuzzleId" />
+                    <input name="guesses[0]" type="hidden" value="A" />
+                    <input name="guesses[1]" type="hidden" value="B" />
+                    <input name="guesses[2]" type="hidden" value="C" />
+                    <input type="submit" value="@letter" class="btn btn-light btn-letter ajax-form-submit" style="width: 40px; height: 40px; margin: 5px" />
+                </form>*@
+        }
+
+    </div>
 </div>
 
-<div class="col-sm-6 text-center">
-    @foreach (var letter in alphabet)
-    {
-        <form class="ajax-form d-inline-block" asp-action="Guess" asp-controller="Game">
-            <input type="hidden" value="@Model.Puzzle.PuzzleId" />
-            <button type="submit" class="btn btn-light btn-letter ajax-form-submit" style="width: 40px; height: 40px; margin: 5px">@letter</button>
-        </form>
-    }
-</div>
+
 
 @section Scripts {
     <script>
         $(document).ready(function () {
+            const puzzleId = @Model.Puzzle.PuzzleId;
+
             $(".btn-letter").click(function () {
                 $(this).attr("disabled", "disabled");
-                if ($(this).text() == "A" || $(this).text() == "B" || $(this).text() == "C") {
-                    $(this).addClass("btn-success");
-                    $(this).removeClass("btn-light");
+                processGuesses();
+
+                function processGuesses() {
+                    var guesses = [];
+                    $(".btn-letter:disabled").each(function () {
+                        guesses.push($(this).text());
+                    });
+
+                    var data = {};
+                    data["puzzleId"] = puzzleId;
+                    for (var i = 0; i < guesses.length; i++) {
+                        data["guesses[" + i + "]"] = guesses[i];
+                    }
+
+                    $.ajax({
+                        url: "@Url.Action("Guess", "Game")",
+                        method: "GET",
+                        data: data,
+                        dataType: "json",
+                        cache: false,
+                        success: function (puzzle) {
+                            const puzzleText = puzzle.text;
+
+                            $("#puzzleText").text(puzzleText);
+                            handleButtonClasses();
+                        },
+                        error: function () {
+                            alert("ERROR");
+                        }
+                    });
+
+                    function handleButtonClasses() {
+                        const puzzleText = $("#puzzleText").text();
+                        const puzzleChars = puzzleText.split("");
+
+                        $(".btn-letter").each(function () {
+                            if (puzzleChars.indexOf($(this).text()) != -1) {
+                                $(this).attr("disabled", "disabled");
+                                $(this).addClass("btn-success");
+                                $(this).removeClass("btn-light");
+                            } else {
+                                $(this).removeClass("btn-success");
+                                $(this).addClass("btn-light");
+                            }
+                        });
+                    }
                 }
             });
         });
