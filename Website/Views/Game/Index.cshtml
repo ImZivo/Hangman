@@ -2,7 +2,12 @@
 @using Hangman.Shared;
 
 @{
-    var alphabet = Alphabet.UppercaseLetters;
+    string[] qwertyLines = new string[]
+    {
+        "QWERTYUIOP",
+        "ASDFGHJKL",
+        "ZXCVBNM"
+                    };
     ViewData["Title"] = "Hangman - Game";
 }
 
@@ -15,24 +20,17 @@
         <span id="puzzleText">@String.Join(' ', Model.Puzzle.Text)</span>
     </div>
 </div>
-<div class="row">
-    <div class="col-sm-6 offset-3 text-center">
-        @foreach (var letter in alphabet)
-        {
-            <button type="submit" class="btn btn-light btn-letter ajax-form-submit" style="width: 40px; height: 40px; margin: 5px">@letter</button>
-            @*<form class="ajax-form" asp-controller="Game" asp-action="Guess" method="get">
-                    <input name="puzzleId" type="hidden" value="@Model.Puzzle.PuzzleId" />
-                    <input name="guesses[0]" type="hidden" value="A" />
-                    <input name="guesses[1]" type="hidden" value="B" />
-                    <input name="guesses[2]" type="hidden" value="C" />
-                    <input type="submit" value="@letter" class="btn btn-light btn-letter ajax-form-submit" style="width: 40px; height: 40px; margin: 5px" />
-                </form>*@
-        }
-
+@foreach (var line in qwertyLines)
+{
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            @foreach (var letter in line)
+            {
+                <button type="submit" class="btn btn-light btn-letter ajax-form-submit">@letter</button>
+            }
+        </div>
     </div>
-</div>
-
-
+}
 
 @section Scripts {
     <script>
