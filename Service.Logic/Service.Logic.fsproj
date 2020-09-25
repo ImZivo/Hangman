@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <AssemblyName>Hangman.Service.Logic</AssemblyName>
+        <RootNamespace>Hangman.Service.Logic</RootNamespace>
+        <nullable>enable</nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="PuzzleRepository.fs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Domain\Domain.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Website", "Website\Website.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contracts", "Contracts\Contracts.csproj", "{55432812-F656-44D6-9C55-58E46341CD1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{962B9848-B6E1-4D65-B312-58AB94F139DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{962B9848-B6E1-4D65-B312-58AB94F139DE}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Service.Logic", "Service.Logic\Service.Logic.fsproj", "{070A65FC-76AB-4F5E-88E3-8E749B5D6A12}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{962B9848-B6E1-4D65-B312-58AB94F139DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{962B9848-B6E1-4D65-B312-58AB94F139DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{962B9848-B6E1-4D65-B312-58AB94F139DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{070A65FC-76AB-4F5E-88E3-8E749B5D6A12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{070A65FC-76AB-4F5E-88E3-8E749B5D6A12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{070A65FC-76AB-4F5E-88E3-8E749B5D6A12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{070A65FC-76AB-4F5E-88E3-8E749B5D6A12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
