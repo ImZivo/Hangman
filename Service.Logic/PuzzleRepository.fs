@@ -1,4 +1,5 @@
 ﻿namespace Hangman.Service.Client
+open System
 open System.Threading.Tasks
 open Hangman.Domain
 
@@ -9,10 +10,6 @@ type IPuzzleRepository =
 type PuzzleRepository() =
     interface IPuzzleRepository with
         member _this.GetRandomAsync() =
-            async {
-                return new Puzzle(1, "TODO: finish implementation")
-            } |> Async.StartAsTask
+            raise (new NotImplementedException())
         member _this.GetAsync puzzleId = 
-            async {
-                return new Puzzle(puzzleId, "TODO: finish implementation")
-            } |> Async.StartAsTask
+            raise (new NotImplementedException())
