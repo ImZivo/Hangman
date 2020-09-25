@@ -1,3 +1,4 @@
+using Hangman.Service.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +21,9 @@ namespace Hangman.Website
             services
                 .AddControllersWithViews()
                 .AddRazorRuntimeCompilation();
+
+            services
+                .AddSingleton<IHttpClient, JsonHttpClient>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
